@@ -26,7 +26,6 @@ def main():
             places.append(link.get_text(strip=True).lower().strip())
 
     search_term = os.environ["SEARCH_TERM"]
-    search_term_display = search_term  # Variable para mostrar en logs
     search_term_lower = search_term.lower().strip()
 
     if search_term_lower in places:
@@ -38,7 +37,7 @@ def main():
         )
         print(f"✅ WhatsApp enviado con SID: {message.sid}")
     else:
-        print(f"❌ '{search_term_display}' no está disponible todavía")
+        print(f"❌ La residencia deseada aún no está disponible")
 
 if __name__ == "__main__":
     main()
