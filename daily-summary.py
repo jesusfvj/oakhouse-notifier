@@ -6,7 +6,7 @@ from twilio.rest import Client
 URL = "https://www.oakhouse.jp/listv2/get?vacancy_date%5B%5D=2&vacancy_date%5B%5D=3&rent_low=&rent_high=&room_size_low=&room_size_high=&lang=eng&mark%5B%5D=&mark%5B%5D=sr&search_mode=mark&with_booster=true&from_page=sr&state_id%5B%5D=13&route=oakhouse&page=1&ecomars_page_name=%E3%82%BD%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%AB%E3%83%AC%E3%82%B8%E3%83%87%E3%83%B3%E3%82%B9%E7%89%A9%E4%BB%B6%E4%B8%80%E8%A6%A7"
 
 def main():
-    """Tester que envía por WhatsApp el listado de residencias disponibles"""
+    """Daily summary que envía por WhatsApp el listado de residencias disponibles"""
     
     try:
         # Hacer la petición a la página

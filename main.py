@@ -23,9 +23,9 @@ def main():
     for h3 in soup.find_all("h3", class_="c-caset__name"):
         link = h3.find("a")
         if link:
-            places.append(link.get_text(strip=True))
+            places.append(link.get_text(strip=True).lower().strip())
 
-    search_term = os.environ["SEARCH_TERM"]
+    search_term = os.environ["SEARCH_TERM"].lower().strip()
 
     if search_term in places:
         client = Client(os.environ["TWILIO_ACCOUNT_SID"], os.environ["TWILIO_AUTH_TOKEN"])

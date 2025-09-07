@@ -1,12 +1,15 @@
-name: Oakhouse WhatsApp Notifier
+name: Daily Residences Summary
 
 on:
   schedule:
-    - cron: "*/15 * * * *" # cada 15 minutos
+    - cron: "0 6 * * *" # 6:00 AM
+    - cron: "0 12 * * *" # 12:00 PM (mediodía)
+    - cron: "0 18 * * *" # 6:00 PM
+    - cron: "0 0 * * *" # 12:00 AM (medianoche)
   workflow_dispatch: # también lo puedes lanzar manualmente
 
 jobs:
-  check:
+  daily-summary:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -20,11 +23,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run scraper
+      - name: Run daily summary
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
           WHATSAPP_TO: ${{ secrets.WHATSAPP_TO }}
           SEARCH_TERM: ${{ secrets.SEARCH_TERM }}
           SCRAPER_ENABLED: ${{ secrets.SCRAPER_ENABLED }}
-        run: python main.py
+        run: python daily-summary.py
