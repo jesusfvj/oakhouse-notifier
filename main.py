@@ -25,10 +25,11 @@ def main():
         if link:
             places.append(link.get_text(strip=True).lower().strip())
 
-    search_term = os.environ["SEARCH_TERM"].lower().strip()
+    search_term = os.environ["SEARCH_TERM"]
     search_term_display = search_term  # Variable para mostrar en logs
+    search_term_lower = search_term.lower().strip()
 
-    if search_term in places:
+    if search_term_lower in places:
         client = Client(os.environ["TWILIO_ACCOUNT_SID"], os.environ["TWILIO_AUTH_TOKEN"])
         message = client.messages.create(
             from_="whatsapp:+14155238886",  # Número fijo del Sandbox de Twilio
