@@ -18,7 +18,12 @@ def main():
 
     r = requests.get(URL)
     soup = BeautifulSoup(r.text, "html.parser")
-    places = [p.get_text(strip=True) for p in soup.find_all("p", class_="ext-share_apart")]
+    # Buscar todos los elementos h3 con la clase c-caset__name y extraer el texto del enlace <a> dentro
+    places = []
+    for h3 in soup.find_all("h3", class_="c-caset__name"):
+        link = h3.find("a")
+        if link:
+            places.append(link.get_text(strip=True))
 
     search_term = os.environ["SEARCH_TERM"]
 
