@@ -2,7 +2,7 @@ name: Oakhouse WhatsApp Notifier
 
 on:
   schedule:
-    - cron: "*/30 * * * *" # cada 30 minutos
+    - cron: "*/3 * * * *" # cada 3 minutos
   workflow_dispatch: # también lo puedes lanzar manualmente
 
 jobs:
@@ -19,6 +19,15 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Run tester
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          WHATSAPP_TO: ${{ secrets.WHATSAPP_TO }}
+          SEARCH_TERM: ${{ secrets.SEARCH_TERM }}
+          SCRAPER_ENABLED: ${{ secrets.SCRAPER_ENABLED }}
+        run: python tester.py
 
       - name: Run scraper
         env:
