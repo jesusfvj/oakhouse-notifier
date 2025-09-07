@@ -26,6 +26,7 @@ def main():
             places.append(link.get_text(strip=True).lower().strip())
 
     search_term = os.environ["SEARCH_TERM"].lower().strip()
+    search_term_display = search_term  # Variable para mostrar en logs
 
     if search_term in places:
         client = Client(os.environ["TWILIO_ACCOUNT_SID"], os.environ["TWILIO_AUTH_TOKEN"])
@@ -36,7 +37,7 @@ def main():
         )
         print(f"✅ WhatsApp enviado con SID: {message.sid}")
     else:
-        print(f"❌ '{search_term}' no está disponible todavía")
+        print(f"❌ '{search_term_display}' no está disponible todavía")
 
 if __name__ == "__main__":
     main()
