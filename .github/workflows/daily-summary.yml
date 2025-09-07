@@ -30,4 +30,4 @@ jobs:
           WHATSAPP_TO: ${{ secrets.WHATSAPP_TO }}
           SEARCH_TERM: ${{ secrets.SEARCH_TERM }}
           SCRAPER_ENABLED: ${{ secrets.SCRAPER_ENABLED }}
-        run: python daily-summary.py
+        run: python summary.py
